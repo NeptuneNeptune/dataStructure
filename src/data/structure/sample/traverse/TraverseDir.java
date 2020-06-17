@@ -187,7 +187,7 @@ public class TraverseDir {
         private String name;
         /**
          * 类型
-         * <p>
+         *
          * 0->文件  1->文件夹
          */
         private int type;
