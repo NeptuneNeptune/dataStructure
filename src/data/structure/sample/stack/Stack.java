@@ -104,7 +104,7 @@ public class Stack<T> {
 }
 
 
-class Test{
+class Test {
     public static void main(String[] args) {
         Stack<Integer> stack = new Stack<>(4, Integer.class);
         System.out.println(stack.push(1));

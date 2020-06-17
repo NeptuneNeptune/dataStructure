@@ -187,7 +187,7 @@ public class TraverseDir {
         private String name;
         /**
          * 类型
-         *
+         * <p>
          * 0->文件  1->文件夹
          */
         private int type;
@@ -269,7 +269,7 @@ public class TraverseDir {
     /**
      * 遍历策略
      */
-    public enum TraverseStrategy{
+    public enum TraverseStrategy {
         /**
          * 递归策略
          */
@@ -288,7 +288,7 @@ public class TraverseDir {
          */
         private int value;
 
-        TraverseStrategy(int value){
+        TraverseStrategy(int value) {
             this.value = value;
         }
 

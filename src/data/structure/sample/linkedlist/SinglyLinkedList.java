@@ -214,9 +214,9 @@ class Test {
         System.out.println(list);
         System.out.println(list.findIndexOf(7));
         System.out.println(list.findIndexOf(3));
-        System.out.println(list.update(0,999));
-        System.out.println(list.update(list.size()-1,888));
-        System.out.println(list.update(7,777));
+        System.out.println(list.update(0, 999));
+        System.out.println(list.update(list.size() - 1, 888));
+        System.out.println(list.update(7, 777));
         System.out.println(list);
         System.out.println(list.clear());
         System.out.println(list);

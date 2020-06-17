@@ -20,7 +20,8 @@ public class DoublyNode<T> {
      */
     private DoublyNode<T> next;
 
-    public DoublyNode() {}
+    public DoublyNode() {
+    }
 
     public DoublyNode(T data, DoublyNode<T> pre, DoublyNode<T> next) {
         this.data = data;

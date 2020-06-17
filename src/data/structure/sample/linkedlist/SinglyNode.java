@@ -16,7 +16,8 @@ public class SinglyNode<T> {
      */
     private SinglyNode<T> next;
 
-    public SinglyNode() {}
+    public SinglyNode() {
+    }
 
     public SinglyNode(T data, SinglyNode<T> next) {
         this.data = data;
