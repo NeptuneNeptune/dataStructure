@@ -1,23 +1,23 @@
 package data.structure.sample.linkedlist;
 
 /**
- * 带头节点的单向链表
+ * 带头节点的双向链表
  *
  * @author Neptune
- * @date 2020/6/17 23:15
+ * @date 2020/6/18 11:54
  */
-public class SinglyLinkedList<T> {
+public class DoublyLinkedList<T> {
     /**
      * 头节点，不存储数据
      */
-    private SinglyNode<T> head;
+    private DoublyNode<T> head;
     /**
      * 当前链表有效元素个数
      */
     private int size;
 
-    public SinglyLinkedList() {
-        this.head = new SinglyNode<>(null, null);
+    public DoublyLinkedList() {
+        this.head = new DoublyNode<>(null, null, null);
         this.size = 0;
     }
 
@@ -42,11 +42,14 @@ public class SinglyLinkedList<T> {
         if (index < 0 || index > this.size) {
             return false;
         }
-        SinglyNode<T> current = this.head;
+        DoublyNode<T> current = this.head;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
-        SinglyNode<T> newNode = new SinglyNode<>(data, current.getNext());
+        DoublyNode<T> newNode = new DoublyNode<>(data, current, current.getNext());
+        if (index != size) {
+            current.getNext().setPre(newNode);
+        }
         current.setNext(newNode);
         this.size += 1;
 
@@ -74,12 +77,15 @@ public class SinglyLinkedList<T> {
         if (isEmpty() || index < 0 || index >= size) {
             return null;
         }
-        SinglyNode<T> current = this.head;
+        DoublyNode<T> current = this.head;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
-        SinglyNode<T> resultNode = current.getNext();
+        DoublyNode<T> resultNode = current.getNext();
         current.setNext(resultNode.getNext());
+        if (index != size - 1) {
+            current.getNext().setPre(current);
+        }
         this.size -= 1;
 
         return resultNode.getData();
@@ -106,11 +112,11 @@ public class SinglyLinkedList<T> {
         if (isEmpty() || index < 0 || index >= size) {
             return null;
         }
-        SinglyNode<T> current = this.head;
+        DoublyNode<T> current = this.head;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
-        SinglyNode<T> resultNode = current.getNext();
+        DoublyNode<T> resultNode = current.getNext();
 
         return resultNode.getData();
     }
@@ -136,11 +142,11 @@ public class SinglyLinkedList<T> {
         if (index < 0 || index >= this.size) {
             return false;
         }
-        SinglyNode<T> current = this.head;
+        DoublyNode<T> current = this.head;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
-        SinglyNode<T> targetNode = current.getNext();
+        DoublyNode<T> targetNode = current.getNext();
         targetNode.setData(data);
 
         return true;
@@ -150,7 +156,7 @@ public class SinglyLinkedList<T> {
      * 查找指定元素的位置，-1表示未找到
      */
     public int findIndexOf(T data) {
-        SinglyNode<T> current = this.head;
+        DoublyNode<T> current = this.head;
         int index = 0;
         while ((current = current.getNext()) != null) {
             if (current.getData().equals(data)) {
@@ -166,6 +172,7 @@ public class SinglyLinkedList<T> {
      * 清空所有元素
      */
     public boolean clear() {
+        this.head.getNext().setPre(null);
         this.head.setNext(null);
         this.size = 0;
         return true;
@@ -175,12 +182,12 @@ public class SinglyLinkedList<T> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("head: ");
-        SinglyNode<T> current = this.head;
+        DoublyNode<T> current = this.head;
         while ((current = current.getNext()) != null) {
             if (current.getNext() == null) {
                 sb.append(current.getData());
             } else {
-                sb.append(current.getData()).append("-->");
+                sb.append(current.getData()).append("<--->");
             }
         }
         sb.append(" :end");
@@ -188,9 +195,9 @@ public class SinglyLinkedList<T> {
     }
 }
 
-class Test {
+class TestDoublyLinkedList {
     public static void main(String[] args) {
-        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
         System.out.println(list.append(1));
         System.out.println(list.append(2));
         System.out.println(list.append(3));
